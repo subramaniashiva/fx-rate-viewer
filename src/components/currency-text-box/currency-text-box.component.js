@@ -5,7 +5,7 @@ import './currency-text-box.component.css';
 
 type Props = {
   currencyValue: string,
-  onCurrencyValueChanged: (value: string) => void
+  onCurrencyValueChanged?: (value: string) => void
 };
 
 type State = {
@@ -14,8 +14,8 @@ type State = {
 
 export default class CurrencyTextBox extends Component<Props, State> {
   static defaultProps = {
-    currencyValue: '0',
-    onCurrencyValueChanged: () => null,
+    currencyValue: '',
+    onCurrencyValueChanged: () => {},
   };
 
   constructor(props: Props) {
@@ -32,7 +32,7 @@ export default class CurrencyTextBox extends Component<Props, State> {
   // Default state
   // We store the value in state to make this a controlled component
   state: State = {
-    localStateCurrencyValue: '0',
+    localStateCurrencyValue: '',
   };
 
   updateLocalStateAndPropagate(value: string) {
@@ -47,7 +47,9 @@ export default class CurrencyTextBox extends Component<Props, State> {
   }
 
   propagateValueChange(value: string) {
-    this.props.onCurrencyValueChanged(value);
+    if (this.props.onCurrencyValueChanged) {
+      this.props.onCurrencyValueChanged(value);
+    }
   }
 
   /*
@@ -84,6 +86,7 @@ export default class CurrencyTextBox extends Component<Props, State> {
     return (
       <div className="currency-text-box-container">
         <TextField
+          placeholder={'0'}
           value={this.state.localStateCurrencyValue}
           onChange={this.handleChange.bind(this)}
         />

@@ -9,12 +9,13 @@ import {
 } from '../redux/reducers/primary-currency-value.reducer';
 
 describe('Sagas: handle secondary currency value change', () => {
-  let generator;
+  let generator: any;
   beforeEach(() => {
     generator = cloneableGenerator(handleSecondaryCurrencyValueChange)();
   });
 
   it('should update primary currency value', () => {
+    // Arrange
     const mockState = {
       primaryCurrency: {
         name: 'foo',
@@ -31,17 +32,22 @@ describe('Sagas: handle secondary currency value change', () => {
         },
       },
     };
+
+    // Assert
     expect(generator.next().value).toEqual(select());
     expect(generator.next(mockState).value).toEqual(
       put(primaryCurrencyValueChangedBySecondary(50)));
   });
 
   it('should update secondary currency value to 0', () => {
+    // Arrange
     const mockState = {
       secondaryCurrencyValue: '',
     };
+
+    // Assert
     expect(generator.next().value).toEqual(select());
     expect(generator.next(mockState).value).toEqual(
-      put(primaryCurrencyValueChangedBySecondary(0)));
+      put(primaryCurrencyValueChangedBySecondary('')));
   });
 });

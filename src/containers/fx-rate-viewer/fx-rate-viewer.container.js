@@ -58,8 +58,8 @@ class FxRateViewer extends Component<Props> {
 
   handleCurrencyValueChanged(currencyType, currencyValue) {
     currencyType === CURRENCY_TYPES.PRIMARY_CURRENCY ?
-      this.props.dispatch(setPrimaryCurrencyValue(Number(currencyValue))) :
-      this.props.dispatch(setSecondaryCurrencyValue(Number(currencyValue)));
+      this.props.dispatch(setPrimaryCurrencyValue(currencyValue)) :
+      this.props.dispatch(setSecondaryCurrencyValue(currencyValue));
   }
 
   render() {
