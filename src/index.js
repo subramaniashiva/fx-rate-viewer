@@ -4,14 +4,14 @@ import {Provider} from 'react-redux';
 
 import './index.css';
 import store from './redux/store';
-import App from './containers/App';
+import FxRateViewer from './containers/fx-rate-viewer/fx-rate-viewer.container';
 import registerServiceWorker from './registerServiceWorker';
 
 const dRoot = document.getElementById('root');
 if (dRoot !== null) {
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <FxRateViewer />
     </Provider>, dRoot);
   registerServiceWorker();
 }

@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+.fx-rate-viewer-container {
+  .fx-rate-viewer-header {
+    background-color: #444;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-item: center;
+    justify-content: center;
+  }
+
+  .fx-rate-viewer-title {
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .currency-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: 20px 0;
+    @media(min-width: map-get($grid-breakpoints, md-min)) {
+      width: 40%;
+      margin: 20px auto;
+    }
+  }
+
+  .exchange-btn {
+    display: block;
+    margin: 10px auto;
+  }
+}
