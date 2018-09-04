@@ -1,0 +1,2 @@
+const CURRENCY_DECIMAL_PRECISION: number = 2;
+export default CURRENCY_DECIMAL_PRECISION;
