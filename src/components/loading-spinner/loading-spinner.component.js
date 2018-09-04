@@ -3,7 +3,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './loading-spinner.component.css';
 
-export default class LoadingSpinner extends Component {
+type Props = {};
+
+export default class LoadingSpinner extends Component<Props> {
   render() {
     return (
       <div className="loading-spinner-container">

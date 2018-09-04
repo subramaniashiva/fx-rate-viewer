@@ -7,13 +7,13 @@ import './currency-drop-down.component.css';
 import type {Currency} from '../../types/currency.type';
 
 type Props = {
-  selectedCurrency: Currency,
-  currenciesList: Array<Currency>,
-  onCurrencySelected: (selectedCurrency: Currency) => void
+  selectedCurrency?: Currency,
+  currenciesList?: Array<Currency>,
+  onCurrencySelected?: (selectedCurrency: Currency) => void
 };
 
 type State = {
-  localStateCurrentCurrency: Currency,
+  localStateCurrentCurrency?: Currency,
 };
 
 export default class CurrencyDropDown extends Component<Props, State> {
@@ -37,8 +37,14 @@ export default class CurrencyDropDown extends Component<Props, State> {
 
   // When receiving new props, update the local state
   componentDidUpdate(prevProps: Props) {
-    const prevCurrency: Currency = prevProps.selectedCurrency;
-    const currentCurrency: Currency = this.props.selectedCurrency;
+    let prevCurrency: Currency;
+    let currentCurrency: Currency;
+    if (prevProps.selectedCurrency) {
+      prevCurrency = prevProps.selectedCurrency;
+    }
+    if (this.props.selectedCurrency) {
+      currentCurrency = this.props.selectedCurrency;
+    }
 
     if (prevCurrency && currentCurrency &&
       prevCurrency.name !== currentCurrency.name) {
@@ -59,7 +65,9 @@ export default class CurrencyDropDown extends Component<Props, State> {
       this.setState({
         localStateCurrentCurrency: selectedValue,
       });
-      this.props.onCurrencySelected(selectedValue);
+      if (this.props.onCurrencySelected) {
+        this.props.onCurrencySelected(selectedValue);
+      }
     }
   }
 

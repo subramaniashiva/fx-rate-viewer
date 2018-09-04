@@ -1,4 +1,3 @@
-import type {Saga} from 'redux-saga';
 import {put, select} from 'redux-saga/effects';
 
 import {primaryCurrencyValueChangedBySecondary}
@@ -6,12 +5,12 @@ import {primaryCurrencyValueChangedBySecondary}
 
 import convertCurrency from '../utils/convert-currency.utils';
 
-export function* handleSecondaryCurrencyValueChange(): Saga<void> {
+export function* handleSecondaryCurrencyValueChange(): Iterable<*> {
   try {
-    const state = yield select();
-    let value: number;
+    const state: any = yield select();
+    let value: number | string;
     if (!state.secondaryCurrencyValue || state.secondaryCurrencyValue === '') {
-      value = 0;
+      value = '';
     } else {
       const sourceCurrency: string = state.secondaryCurrency.name;
       const sourceVal: number = state.secondaryCurrencyValue;

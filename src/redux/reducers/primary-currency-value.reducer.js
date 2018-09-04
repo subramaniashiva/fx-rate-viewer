@@ -2,19 +2,19 @@ import createReducer from '../../utils/create-reducer.utils';
 import createAction from '../../utils/create-action.utils';
 import type {ReduxAction} from '../../types/redux-action.type';
 
-const intialState: number = 0;
+const intialState: number | string = '';
 
 export const SET_PRIMARY_CURRENCY_VALUE: string = 'set_primary_currency_value';
 
 export const PRIMARY_CURRENCY_VALUE_CHANGED_BY_SECONDARY: string =
   'primary_currency_value_changed_by_secondary';
 
-export const setPrimaryCurrencyValue = (data: number): ReduxAction => {
+export const setPrimaryCurrencyValue = (data: number | string): ReduxAction => {
   return createAction(SET_PRIMARY_CURRENCY_VALUE, data);
 }
 
 export const primaryCurrencyValueChangedBySecondary = (
-  data: number):ReduxAction => {
+  data: number | string):ReduxAction => {
     return createAction(PRIMARY_CURRENCY_VALUE_CHANGED_BY_SECONDARY, data); 
 }
 

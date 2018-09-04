@@ -16,7 +16,7 @@ describe('Currency Text Box Component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have the default currency value prop as 0', () => {
+  it('should have the default currency value prop as empty', () => {
     // Arrange
     const component = shallow(
       <CurrencyTextBox></CurrencyTextBox>
@@ -24,10 +24,10 @@ describe('Currency Text Box Component', () => {
 
     // Assert
     expect(component.instance().props.currencyValue)
-      .toEqual('0');
+      .toEqual('');
   });
 
-  it('should have the default currency value state as 0', () => {
+  it('should have the default currency value state as empty', () => {
     // Arrange
     const component = shallow(
       <CurrencyTextBox></CurrencyTextBox>
@@ -35,7 +35,7 @@ describe('Currency Text Box Component', () => {
 
     // Aseert
     expect(component.instance().state.localStateCurrencyValue)
-      .toEqual('0');
+      .toEqual('');
   });
 
   it('should set the currency value property', () => {

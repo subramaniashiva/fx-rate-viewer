@@ -7,7 +7,10 @@ import store from '../../redux/store';
 import FXRateViewer from './fx-rate-viewer.container';
 
 it('renders without crashing', () => {
+  // Arrange
   const div = document.createElement('div');
+
+  // Assert
   ReactDOM.render(
     <Provider store={store}>
       <FXRateViewer />

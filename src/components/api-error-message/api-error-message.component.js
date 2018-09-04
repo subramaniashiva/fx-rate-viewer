@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './api-error-message.component.css';
 
-export default class ApiErrorMessage extends Component {
+type Props = {};
+
+export default class ApiErrorMessage extends Component<Props> {
   render() {
     return (
       <div className="api-error-message-container">

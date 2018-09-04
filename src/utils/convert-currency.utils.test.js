@@ -2,6 +2,7 @@ import convertCurrency from './convert-currency.utils';
 
 describe('utils: Convert Currency', () => {
   it('should output converted currency', () => {
+    // Arrange
     const sourceCurrencyName: string = 'foo';
     const sourceCurrencyValue: number = 100;
     const destinationCurrencyName: string = 'bar';
@@ -19,10 +20,12 @@ describe('utils: Convert Currency', () => {
       fxData
       );
 
+    // Assert
     expect(convertedValue).toEqual(200);
   });
 
   it('should output converted currency in floating precision 2', () => {
+    // Arrange
     const sourceCurrencyName: string = 'foo';
     const sourceCurrencyValue: number = 1;
     const destinationCurrencyName: string = 'bar';
@@ -40,10 +43,12 @@ describe('utils: Convert Currency', () => {
       fxData
       );
 
+    // Assert
     expect(convertedValue).toEqual(0.33);
   });
 
-  it('should output 0 if details are invalid', () => {
+  it('should output empty if details are invalid', () => {
+    // Arrange
     const sourceCurrencyName: string = 'foo';
     const sourceCurrencyValue: number = 1;
     const destinationCurrencyName: string = 'bar';
@@ -58,6 +63,7 @@ describe('utils: Convert Currency', () => {
       fxData
       );
 
-    expect(convertedValue).toEqual(0);
+    // Assert
+    expect(convertedValue).toEqual('');
   });
 });

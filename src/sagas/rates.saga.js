@@ -1,4 +1,3 @@
-import type {Saga} from 'redux-saga';
 import {call, put} from 'redux-saga/effects';
 import fetch from 'isomorphic-fetch';
 
@@ -13,7 +12,7 @@ function fetchRatesFromAPI(): Promise<RatesAPIResponse> {
     .then((data) => data.json());
 }
 
-export function* loadRatesSaga(options: LoadRatesOptions): Saga<void> {
+export function* loadRatesSaga(options: LoadRatesOptions): Iterable<*> {
   try {
     if (options && options.showLoading) {
       yield put(setLoading(true));

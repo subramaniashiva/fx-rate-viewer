@@ -6,7 +6,7 @@ export default function convertCurrency(
   sourceCurrencyValue: number,
   destinationCurrencyName: string,
   fxData: Object
-  ): number {
+  ): number | string {
   if (sourceCurrencyName &&
     sourceCurrencyValue &&
     destinationCurrencyName &&
@@ -25,5 +25,5 @@ export default function convertCurrency(
       convertedValue :
       Number(convertedValue.toFixed(CURRENCY_DECIMAL_PRECISION));
   }
-  return 0;
+  return '';
 }

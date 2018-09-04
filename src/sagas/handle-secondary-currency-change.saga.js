@@ -1,4 +1,3 @@
-import type {Saga} from 'redux-saga';
 import {put, select} from 'redux-saga/effects';
 
 import getFirstDiffItemArray
@@ -16,9 +15,9 @@ import {handleSecondaryCurrencyValueChange}
 
 import type {Currency} from '../types/currency.type';
 
-export function* handleSecondaryCurrencyChange(): Saga<void> {
+export function* handleSecondaryCurrencyChange(): Iterable<*> {
   try {
-    const state = yield select();
+    const state: any = yield select();
     const primaryCurrency: Currency = state.primaryCurrency;
     const secondaryCurrency: Currency = state.secondaryCurrency;
 

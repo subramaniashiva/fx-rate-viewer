@@ -17,12 +17,13 @@ import {
 import currenciesList from '../config/currencies-list.config';
 
 describe('Sagas: handle secondary currency change', () => {
-  let generator;
+  let generator: any;
   beforeEach(() => {
     generator = cloneableGenerator(handleSecondaryCurrencyChange)();
   });
 
   it('should update primary currency', () => {
+    // Assert
     expect(generator.next().value).toEqual(select());
     expect(generator.next({
       primaryCurrency: {
@@ -38,6 +39,7 @@ describe('Sagas: handle secondary currency change', () => {
   });
 
   it('should not update primary currency', () => {
+    // Assert
     expect(generator.next().value).toEqual(select());
     expect(generator.next({
       primaryCurrency: {

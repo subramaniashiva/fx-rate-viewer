@@ -27,7 +27,7 @@ from './handle-secondary-currency-value-change.saga';
 
 /* ------------- Connect Types To Sagas ------------- */
 
-export default function* root(): Saga<void> {
+export default function* root(): Saga<*> {
   yield all([
     // some sagas only receive an action
     takeEvery(LOAD_RATES, loadRatesSaga),
