@@ -23,8 +23,8 @@ Setup
   `REACT_APP_API_KEY=YOUR_API_KEY`
 4) To start the app, run
 
-    `npm start`
-    Navigate to localhost:3000 in your browser to view the app
+  `npm start`
+  Navigate to localhost:3000 in your browser to view the app
 
 5) This project is enabled with ESLint. Any JS file that you write must be linted using ESLint. To run the linting command type
 
