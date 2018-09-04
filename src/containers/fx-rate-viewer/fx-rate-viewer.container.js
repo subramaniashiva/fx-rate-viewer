@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 import './fx-rate-viewer.container.css';
 
@@ -9,6 +10,8 @@ import CurrencyTextBox
   from '../../components/currency-text-box/currency-text-box.component';
 import LoadingSpinner
   from '../../components/loading-spinner/loading-spinner.component';
+import ApiErrorMessage
+  from '../../components/api-error-message/api-error-message.component';
 
 import currenciesList from '../../config/currencies-list.config';
 import FX_RATES_API_FETCH_INTERVAL
@@ -38,8 +41,10 @@ type Props = {
 class FxRateViewer extends Component<Props> {
   constructor(props: Props) {
     super(props);
+    // Load FX rated initially
     props.dispatch(loadRates());
 
+    // Fetch the rates in specified time intervals
     setInterval(() => {
       props.dispatch(loadRates({showLoading: false}));
     }, FX_RATES_API_FETCH_INTERVAL);
@@ -59,57 +64,57 @@ class FxRateViewer extends Component<Props> {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">FX Converter</h1>
+      <div className="fx-rate-viewer-container">
+        <header className="fx-rate-viewer-header">
+          <h1 className="fx-rate-viewer-title">FX Converter</h1>
         </header>
         {
           this.props.loading ? (<LoadingSpinner/>):
             (
-              (this.props.rates && this.props.rates.success) ?
-                (<div>
-                <div className="source-currency">
-                  <CurrencyDropDown
-                    currenciesList={currenciesList}
-                    selectedCurrency={this.props.primaryCurrency}
-                    onCurrencySelected=
-                      {(currencyObj) => (this.handleCurrencyChanged(
-                        CURRENCY_TYPES.PRIMARY_CURRENCY, currencyObj))}
-                  ></CurrencyDropDown>
+              (this.props.rates && this.props.rates.success !== false) ?
+                (
+                  <div className="container-layout">
+                    <div className="currency-container source-currency">
+                      <CurrencyDropDown
+                        currenciesList={currenciesList}
+                        selectedCurrency={this.props.primaryCurrency}
+                        onCurrencySelected=
+                          {(currencyObj) => (this.handleCurrencyChanged(
+                            CURRENCY_TYPES.PRIMARY_CURRENCY, currencyObj))}
+                      ></CurrencyDropDown>
 
-                  <CurrencyTextBox
-                    currencyValue={this.props.primaryCurrencyValue.toString()}
-                    onCurrencyValueChanged=
-                      {
-                        (currencyValue) =>
-                          this.handleCurrencyValueChanged(
-                            CURRENCY_TYPES.PRIMARY_CURRENCY, currencyValue)
-                      }
-                  ></CurrencyTextBox>
-                </div>
-                <div className="destination-currency">
-                  <CurrencyDropDown
-                    currenciesList={currenciesList}
-                    selectedCurrency={this.props.secondaryCurrency}
-                    onCurrencySelected=
-                      {(currencyObj) => (this.handleCurrencyChanged(
-                        CURRENCY_TYPES.SECONDARY_CURRENCY, currencyObj))}
-                  ></CurrencyDropDown>
+                      <CurrencyTextBox
+                        currencyValue={this.props.primaryCurrencyValue.toString()}
+                        onCurrencyValueChanged=
+                          {
+                            (currencyValue) =>
+                              this.handleCurrencyValueChanged(
+                                CURRENCY_TYPES.PRIMARY_CURRENCY, currencyValue)
+                          }
+                      ></CurrencyTextBox>
+                    </div>
+                    <div className="currency-container destination-currency">
+                      <CurrencyDropDown
+                        currenciesList={currenciesList}
+                        selectedCurrency={this.props.secondaryCurrency}
+                        onCurrencySelected=
+                          {(currencyObj) => (this.handleCurrencyChanged(
+                            CURRENCY_TYPES.SECONDARY_CURRENCY, currencyObj))}
+                      ></CurrencyDropDown>
 
-                  <CurrencyTextBox
-                    currencyValue=
-                      {this.props.secondaryCurrencyValue.toString()}
-                    onCurrencyValueChanged=
-                      {(currencyValue) => this.handleCurrencyValueChanged(
-                        CURRENCY_TYPES.SECONDARY_CURRENCY, currencyValue)}
-                  ></CurrencyTextBox>
-                </div>
-                </div>): (<div>
-                  <p>
-                    Unable to reach the server :(
-                    Please check your internet connection.
-                  </p>
-                </div>)
+                      <CurrencyTextBox
+                        currencyValue=
+                          {this.props.secondaryCurrencyValue.toString()}
+                        onCurrencyValueChanged=
+                          {(currencyValue) => this.handleCurrencyValueChanged(
+                            CURRENCY_TYPES.SECONDARY_CURRENCY, currencyValue)}
+                      ></CurrencyTextBox>
+                    </div>
+                    <Button className="exchange-btn" variant="contained" color="secondary">Exchange</Button>
+                  </div>
+                ): (
+                  <ApiErrorMessage></ApiErrorMessage>
+                )
             )
         }
       </div>

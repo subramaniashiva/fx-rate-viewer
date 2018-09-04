@@ -1,0 +1,9 @@
+.currency-drop-down-container {
+  flex-grow: 1;
+  .currency-drop-down {
+    width: 100%;
+    &:before, &:after, &:hover {
+      border-bottom: none !important;
+    }
+  }
+}

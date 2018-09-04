@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import ExpandMore from '@material-ui/icons/ExpandMoreSharp';
 
+import './currency-drop-down.component.css';
 import type {Currency} from '../../types/currency.type';
 
 type Props = {
@@ -15,6 +17,7 @@ type State = {
 };
 
 export default class CurrencyDropDown extends Component<Props, State> {
+
   static defaultProps = {
     selectedCurrency: undefined,
     currenciesList: [],
@@ -65,8 +68,10 @@ export default class CurrencyDropDown extends Component<Props, State> {
     const {currenciesList} = this.props;
 
     return (
-      <div>
+      <div className="currency-drop-down-container">
         <Select
+          className="currency-drop-down"
+          IconComponent={ExpandMore}
           value={localStateCurrentCurrency && localStateCurrentCurrency.name}
           onChange={this.handleChange.bind(this)}
         >

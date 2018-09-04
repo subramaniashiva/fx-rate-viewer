@@ -11,6 +11,7 @@ describe('Currency Drop Down component', () => {
       <CurrencyDropDown
         selectedCurrency={currenciesList[0]}
         currenciesList={currenciesList}
+        onCurrencySelected={() => null}
       ></CurrencyDropDown>
     );
     expect(component).toBeTruthy();

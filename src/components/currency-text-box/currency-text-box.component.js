@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 
+import './currency-text-box.component.css';
+
 type Props = {
   currencyValue: string,
   onCurrencyValueChanged: (value: string) => void
@@ -80,10 +82,12 @@ export default class CurrencyTextBox extends Component<Props, State> {
 
   render() {
     return (
-      <TextField
-        value={this.state.localStateCurrencyValue}
-        onChange={this.handleChange.bind(this)}
-      />
+      <div className="currency-text-box-container">
+        <TextField
+          value={this.state.localStateCurrencyValue}
+          onChange={this.handleChange.bind(this)}
+        />
+      </div>
     );
   }
 }

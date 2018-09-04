@@ -9,7 +9,7 @@ import type {RatesAPIResponse} from '../types/rates-api-response.type';
 import type {LoadRatesOptions} from '../types/load-rates-options.type';
 
 function fetchRatesFromAPI(): Promise<RatesAPIResponse> {
-  return fetch(API.root + API.path.loadRates)
+  return fetch(API.root + API.path.loadRates, {cache: 'no-cache'})
     .then((data) => data.json());
 }
 
