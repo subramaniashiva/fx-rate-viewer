@@ -2,6 +2,7 @@
   "name": "revolut-exchange-rates-viewer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://subramaniashiva.github.io/fx-rate-viewer",
   "dependencies": {
     "@material-ui/core": "^3.0.1",
     "@material-ui/icons": "^3.0.1",
@@ -26,7 +27,9 @@
     "test:CI": "CI=true npm test",
     "lint": "eslint src/**/*.js",
     "flow": "flow",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
   },
   "devDependencies": {
     "babel-eslint": "^8.1.2",
