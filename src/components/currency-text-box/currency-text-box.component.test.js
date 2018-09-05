@@ -150,6 +150,27 @@ describe('Currency Text Box Component', () => {
     const instance = component.instance();
 
     // Act
+    instance.validateFloatAndUpdate((Number.MAX_SAFE_INTEGER + 1).toString());
+
+    // Assert
+    expect(instance.state.localStateCurrencyValue)
+      .toEqual('0');
+    expect(mockOnCurrencyValueChanged).not.toHaveBeenCalled();
+  });
+
+  it('should validate the currency value and not update state', () => {
+    // Arrange
+    const mockOnCurrencyValueChanged = jest.fn();
+
+    const component = shallow(
+      <CurrencyTextBox
+        currencyValue={'0'}
+        onCurrencyValueChanged={mockOnCurrencyValueChanged}
+      ></CurrencyTextBox>
+    );
+    const instance = component.instance();
+
+    // Act
     instance.validateFloatAndUpdate('foo');
 
     // Assert

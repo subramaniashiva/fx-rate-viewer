@@ -60,7 +60,9 @@ export default class CurrencyTextBox extends Component<Props, State> {
   */
   validateFloatAndUpdate(value: string) {
     const split = value.split('.');
-    if (split.length === 1 && !isNaN(Number(split[0]))) {
+    if (split.length === 1
+      && !isNaN(Number(split[0]))
+      && Number(split[0]) < Number.MAX_SAFE_INTEGER) {
       this.updateLocalStateAndPropagate(value);
     } else if (split.length === 2) {
       if (split[1] === '') {
