@@ -21,6 +21,7 @@ Setup
 3) Get an API key from Open Exchange Rates API and add that in your **.env.local** file as follows:
 
   `REACT_APP_API_KEY=YOUR_API_KEY`
+
 4) To start the app, run
 
   `npm start`
@@ -34,7 +35,7 @@ Setup
 
   `npm run build`
 
-6) This project uses Jest & Enzyme for unit testing. To run tests
+7) This project uses Jest & Enzyme for unit testing. To run tests
 
   `npm run test`
 
